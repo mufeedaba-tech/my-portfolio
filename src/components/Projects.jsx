@@ -2,45 +2,62 @@ import { useEffect, useState } from "react"
 
 const projects = [
   {
-    title: "Doctor Appointment Booking System",
+    title: "Medisure - Doctor Appointment Booking System",
     description:
-      "A full-stack MERN application that allows patients to book appointments with doctors, manage profiles and view appointments.",
+      "A full-stack MERN healthcare platform where patients can find doctors, book appointments, manage profiles and view appointments.",
     image: "/doctor-project.jpg",
-    technologies: ["MERN", "Tailwind CSS", "JWT"],
-    liveLink: "#",
-    githubLink: "#",
+    technologies: ["MERN", "Tailwind CSS", "JWT", "Razorpay"],
+    liveLink:
+      "https://medisure-doctor-appointmnet-booking.vercel.app",
+    githubLink:
+      "https://github.com/mufeedaba-tech/Medisure-Doctor-Appointmnet-Booking-System",
   },
+
   {
-    title: "Admin Dashboard",
+    title: "Medisure - Admin Dashboard",
     description:
-      "Admin panel to manage doctors, appointments and view analytics with charts and reports.",
+      "An admin dashboard for managing doctors, appointments and platform activities with analytics and interactive charts.",
     image: "/admin-dashboard.jpg",
     technologies: ["React", "Chart.js", "Node.js"],
-    liveLink: "#",
-    githubLink: "#",
+    liveLink: "https://medisure-doctor-appointmnet-booking-two.vercel.app",
+    githubLink:
+      "https://github.com/mufeedaba-tech/Medisure-Doctor-Appointmnet-Booking-System",
   },
+
   {
     title: "Portfolio Website",
     description:
-      "A modern responsive portfolio website showcasing skills, projects and professional experience.",
+      "A modern responsive portfolio website designed to showcase my skills, projects, education and professional experience.",
     image: "/portfolio-project.jpg",
     technologies: ["React", "Tailwind CSS", "JavaScript"],
-    liveLink: "#",
-    githubLink: "#",
+    liveLink: "https://my-portfolio-khaki-iota-80.vercel.app",
+    githubLink: "https://github.com/mufeedaba-tech/my-portfolio",
+  },
+  {
+    title: "Kanban Board System",
+    description:
+      "A task management system with drag-and-drop Kanban boards, role-based access control, real-time task tracking, and a responsive user interface.",
+    image: "/kanban.png",
+    technologies: ["ASP.NET", "C#", "SQL Server","CSS","HTML"],
+    githubLink:
+      "https://github.com/mufeedaba-tech/kanban-board-system",
   },
 ]
 
 function Projects() {
   const [current, setCurrent] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
 
   // Auto slide every 4 seconds
   useEffect(() => {
+    if (isPaused) return
+
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % projects.length)
     }, 4000)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [isPaused])
 
   const visibleProjects = [
     projects[current % projects.length],
@@ -50,12 +67,12 @@ function Projects() {
   return (
     <section
       id="projects"
-      className="bg-white px-6 py-16 text-[#0b1735] lg:px-12"
+      className="bg-white px-6 py-20 text-[#0b1735] lg:px-12"
     >
       <div className="mx-auto max-w-[1400px]">
 
         {/* Heading */}
-        <div className="mb-10">
+        <div className="mb-12">
           <p className="text-sm font-semibold tracking-[0.2em] text-indigo-500">
             MY PROJECTS
           </p>
@@ -64,7 +81,7 @@ function Projects() {
             Projects
           </h2>
 
-          <div className="mt-3 h-[2px] w-8 bg-indigo-500" />
+          <div className="mt-3 h-[2px] w-10 bg-indigo-500" />
         </div>
 
         {/* Project Cards */}
@@ -73,12 +90,14 @@ function Projects() {
           {visibleProjects.map((project, index) => (
             <div
               key={`${project.title}-${index}`}
-              className="group overflow-hidden rounded-xl border border-gray-200 bg-white p-3 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-xl hover:shadow-indigo-100"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+              className="group overflow-hidden rounded-2xl border border-[#dbe2f0] bg-[#07152c] p-4 shadow-lg transition-all duration-500 hover:-translate-y-1 hover:border-indigo-400 hover:shadow-xl hover:shadow-indigo-100"
             >
-              <div className="grid gap-5 sm:grid-cols-[190px_1fr]">
+              <div className="grid gap-5 sm:grid-cols-[210px_1fr]">
 
-                {/* Image */}
-                <div className="h-[180px] overflow-hidden rounded-lg bg-gray-100">
+                {/* Project Image */}
+                <div className="h-[190px] overflow-hidden rounded-xl bg-[#0b1b34]">
                   <img
                     src={project.image}
                     alt={project.title}
@@ -86,11 +105,13 @@ function Projects() {
                   />
                 </div>
 
-                {/* Content */}
-                <div className="flex flex-col justify-center px-2 py-2">
+                {/* Project Content */}
+                <div className="flex flex-col justify-center">
 
+                  {/* Title + Arrow */}
                   <div className="flex items-start justify-between gap-3">
-                    <h3 className="text-lg font-semibold leading-6 text-[#0b1735]">
+
+                    <h3 className="text-lg font-semibold leading-6 text-white">
                       {project.title}
                     </h3>
 
@@ -98,36 +119,41 @@ function Projects() {
                       href={project.liveLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-md border border-indigo-300 text-indigo-600 transition duration-300 hover:bg-indigo-500 hover:text-white"
+                      className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg border border-indigo-400/40 text-indigo-400 transition duration-300 hover:bg-indigo-500 hover:text-white"
                       aria-label={`Open ${project.title}`}
                     >
                       ↗
                     </a>
+
                   </div>
 
-                  <p className="mt-3 text-sm leading-6 text-gray-600">
+                  {/* Description */}
+                  <p className="mt-3 text-sm leading-6 text-gray-300">
                     {project.description}
                   </p>
 
                   {/* Technology Tags */}
                   <div className="mt-4 flex flex-wrap gap-2">
+
                     {project.technologies.map((technology) => (
                       <span
                         key={technology}
-                        className="rounded-md bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-600"
+                        className="rounded-md border border-indigo-400/20 bg-indigo-500/10 px-3 py-1 text-xs font-medium text-indigo-300"
                       >
                         {technology}
                       </span>
                     ))}
+
                   </div>
 
                   {/* Buttons */}
                   <div className="mt-5 flex flex-wrap gap-3">
+
                     <a
                       href={project.liveLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-md bg-indigo-500 px-4 py-2 text-xs font-medium text-white transition hover:bg-purple-600"
+                      className="rounded-lg bg-indigo-500 px-4 py-2 text-xs font-medium text-white transition hover:bg-purple-600"
                     >
                       Live Demo
                     </a>
@@ -136,10 +162,11 @@ function Projects() {
                       href={project.githubLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-md border border-gray-300 px-4 py-2 text-xs font-medium text-gray-700 transition hover:border-indigo-400 hover:text-indigo-600"
+                      className="rounded-lg border border-white/20 px-4 py-2 text-xs font-medium text-gray-200 transition hover:border-indigo-400 hover:text-indigo-400"
                     >
                       GitHub
                     </a>
+
                   </div>
 
                 </div>
@@ -151,6 +178,7 @@ function Projects() {
 
         {/* Slider Dots */}
         <div className="mt-8 flex justify-center gap-2">
+
           {projects.map((_, index) => (
             <button
               key={index}
@@ -162,7 +190,9 @@ function Projects() {
                   : "w-2.5 bg-gray-300 hover:bg-gray-400"
               }`}
             />
+
           ))}
+
         </div>
 
       </div>

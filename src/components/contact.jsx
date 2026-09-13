@@ -82,7 +82,7 @@ ${formData.message}
 
             {/* Email */}
             <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=YOUR_EMAIL@gmail.com"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=mufeedaba@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-7 flex items-center gap-4 rounded-xl bg-white p-4 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md"
@@ -94,14 +94,14 @@ ${formData.message}
               <div>
                 <p className="text-xs text-gray-500">Email</p>
                 <p className="mt-1 text-sm font-medium text-[#0b1735]">
-                  YOUR_EMAIL@gmail.com
+                  mufeedaba@gmail.com
                 </p>
               </div>
             </a>
 
             {/* Phone */}
             <a
-              href="tel:+910000000000"
+              href="tel:+917406718422"
               className="mt-4 flex items-center gap-4 rounded-xl bg-white p-4 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md"
             >
               <div className="flex h-11 w-11 items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
@@ -111,7 +111,7 @@ ${formData.message}
               <div>
                 <p className="text-xs text-gray-500">Phone</p>
                 <p className="mt-1 text-sm font-medium text-[#0b1735]">
-                  +91 XXXXX XXXXX
+                  +91 7406718422
                 </p>
               </div>
             </a>
